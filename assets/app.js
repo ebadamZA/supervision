@@ -26,7 +26,7 @@
         <h3>${escapeHTML(topic.title)}</h3>
         <p class="topic-question">${escapeHTML(topic.question)}</p>
         <div class="tag-list">${tags(topic)}</div>
-        <div class="topic-bottom"><span class="pathway">Postgraduate research</span><button class="open-brief" type="button" data-topic="${topic.id}" aria-label="Read research brief for ${escapeHTML(topic.title)}">Read brief ↗</button></div>
+        <div class="topic-bottom"><span class="pathway">${topic.approaches.includes("primary") ? "Participant study · ethics required" : "Public-data study"}</span><button class="open-brief" type="button" data-topic="${topic.id}" aria-label="Read research brief for ${escapeHTML(topic.title)}">Read brief ↗</button></div>
       </article>`).join("");
     $("results-label").textContent = `Showing ${topics.length} of ${content.topics.length} research topics`;
     $("no-results").hidden = topics.length > 0;
@@ -49,6 +49,8 @@
       <p class="dialog-lede">${escapeHTML(topic.question)}</p>
       <div class="dialog-meta">${tags(topic)}</div>
       <section class="dialog-section"><h3>Suggested research approach</h3><p>${escapeHTML(topic.method)}</p></section>
+      <section class="dialog-section"><h3>Minimum viable study</h3><p>${escapeHTML(topic.scope)}</p></section>
+      <section class="dialog-section"><h3>Data access and approvals</h3><p>${escapeHTML(topic.access)}</p></section>
       <section class="dialog-section"><h3>Evidence and data</h3><p>${escapeHTML(topic.evidence)}</p></section>
       <section class="dialog-section"><h3>Independent student contribution</h3><p>${escapeHTML(topic.contribution)}</p></section>
       <section class="dialog-section"><h3>How later students could build on this</h3><p>${escapeHTML(topic.next)}</p></section>
