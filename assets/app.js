@@ -4,7 +4,7 @@
   if (!content) return;
   const $ = (id) => document.getElementById(id);
   const escapeHTML = (value) => String(value).replace(/[&<>"']/g, (char) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[char]);
-  const methodLabels = { primary:"Primary data", dataset:"Published dataset", replication:"Replication" };
+  const methodLabels = { primary:"Primary data", dataset:"Data / computational", replication:"Replication" };
   const filters = { search:"", area:"all", method:"all" };
   const grid = $("topic-grid");
   const dialog = $("topic-dialog");
@@ -17,7 +17,7 @@
     const topics = content.topics.filter(topic => {
       if (filters.area !== "all" && topic.area !== filters.area) return false;
       if (filters.method !== "all" && !topic.approaches.includes(filters.method)) return false;
-      const searchable = [topic.id,topic.title,topic.question,content.areas[topic.area],topic.evidence,topic.method,...topic.approaches].join(" ").toLocaleLowerCase();
+      const searchable = [topic.id,topic.title,topic.question,content.areas[topic.area],topic.context,topic.approach,topic.data,topic.contribution,...topic.reading.map(item=>item[0]),...topic.approaches].join(" ").toLocaleLowerCase();
       return !query || searchable.includes(query);
     });
     grid.innerHTML = topics.map(topic => `
@@ -26,7 +26,7 @@
         <h3>${escapeHTML(topic.title)}</h3>
         <p class="topic-question">${escapeHTML(topic.question)}</p>
         <div class="tag-list">${tags(topic)}</div>
-        <div class="topic-bottom"><span class="pathway">${topic.approaches.includes("primary") ? "Participant study · ethics required" : "Public-data study"}</span><button class="open-brief" type="button" data-topic="${topic.id}" aria-label="Read research brief for ${escapeHTML(topic.title)}">Read brief ↗</button></div>
+        <div class="topic-bottom"><span class="pathway">${escapeHTML(topic.route)}</span><button class="open-brief" type="button" data-topic="${topic.id}" aria-label="Read research brief for ${escapeHTML(topic.title)}">Read brief ↗</button></div>
       </article>`).join("");
     $("results-label").textContent = `Showing ${topics.length} of ${content.topics.length} research topics`;
     $("no-results").hidden = topics.length > 0;
@@ -48,15 +48,16 @@
       <h2 id="dialog-title">${escapeHTML(topic.title)}</h2>
       <p class="dialog-lede">${escapeHTML(topic.question)}</p>
       <div class="dialog-meta">${tags(topic)}</div>
-      <section class="dialog-section"><h3>Suggested research approach</h3><p>${escapeHTML(topic.method)}</p></section>
-      <section class="dialog-section"><h3>Minimum viable study</h3><p>${escapeHTML(topic.scope)}</p></section>
-      <section class="dialog-section"><h3>Data access and approvals</h3><p>${escapeHTML(topic.access)}</p></section>
-      <section class="dialog-section"><h3>Evidence and data</h3><p>${escapeHTML(topic.evidence)}</p></section>
-      <section class="dialog-section"><h3>Independent student contribution</h3><p>${escapeHTML(topic.contribution)}</p></section>
-      <section class="dialog-section"><h3>How later students could build on this</h3><p>${escapeHTML(topic.next)}</p></section>
-      <section class="dialog-section"><h3>Ethics / methodological considerations</h3><p>${escapeHTML(topic.ethics)}</p></section>
-      ${topic.sources.length ? `<section class="dialog-section dialog-sources"><h3>Suggested reading and data sources</h3>${topic.sources.map(src=>`<a href="${escapeHTML(src.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(src.label)} ↗</a>`).join("")}</section>` : ""}
-      <div class="dialog-warning">This is an initial direction, not an approved proposal. The final question, scope, methodology, permissions and supervision arrangements need discussion.</div>
+      <section class="dialog-section"><h3>Why this question matters</h3><p>${escapeHTML(topic.context)}</p></section>
+      <section class="dialog-section"><h3>Possible research direction</h3><p>${escapeHTML(topic.approach)}</p></section>
+      <section class="dialog-section"><h3>Data and practical considerations</h3><p>${escapeHTML(topic.data)}</p></section>
+      <section class="dialog-section"><h3>What the research could contribute</h3><p>${escapeHTML(topic.contribution)}</p></section>
+      <section class="dialog-section dialog-sources"><h3>Suggested starting points</h3>
+        ${topic.reading.map(([label,url])=>`<a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)} ↗</a>`).join("")}
+        <p>These papers are a starting point, not a complete reading list. You are expected to find and evaluate further research.</p>
+      </section>
+      ${topic.resources.length ? `<section class="dialog-section dialog-sources"><h3>Datasets and useful resources</h3>${topic.resources.map(([label,url])=>`<a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)} ↗</a>`).join("")}</section>` : ""}
+      <div class="dialog-warning">These are starting ideas. You will need to identify a research gap, justify your approach and develop a feasible concept note. Participant studies require the relevant ethics approval before data collection.</div>
       <div class="dialog-bottom"><button class="copy-topic" type="button" id="share-topic">Copy link to this topic ↗</button><span id="topic-copy-status" class="copy-status" aria-live="polite"></span></div>`;
     if (!dialog.open) dialog.showModal();
     if (updateUrl) updateTopicUrl(id);
