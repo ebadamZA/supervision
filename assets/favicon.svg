@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Research with Ebrahim Adam — blue research favicon</title>
+  <rect width="128" height="128" rx="27" fill="#0b1220"/>
+  <rect x="1.2" y="1.2" width="125.6" height="125.6" rx="25.8" fill="none" stroke="#2b3c59" stroke-width="2.4"/>
+  <!-- Three rising bars represent evidence and analysis. -->
+  <rect x="43" y="40" width="11" height="26" rx="2.5" fill="#2563eb"/>
+  <rect x="59" y="29" width="11" height="37" rx="2.5" fill="#3b82f6"/>
+  <rect x="75" y="18" width="11" height="48" rx="2.5" fill="#60a5fa"/>
+  <!-- Open pages stand for inquiry and postgraduate research. -->
+  <path d="M16 66 C33 59 49 62 64 80 L64 106 C49 91 33 88 16 93Z" fill="#3b82f6"/>
+  <path d="M112 66 C95 59 79 62 64 80 L64 106 C79 91 95 88 112 93Z" fill="#f1f7ff"/>
+  <path d="M16 66 C33 59 49 62 64 80 C79 62 95 59 112 66" fill="none" stroke="#0b1220" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M13 98 C33 94 48 98 64 112 C80 98 95 94 115 98" fill="none" stroke="#f1f7ff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
