@@ -101,7 +101,7 @@ window.RESEARCH_CONTENT = {
     },
     {
       id:"A4",
-      "route": "Participant study · ethics required",
+      "route": "Participant study",
       "area": "learning-analytics",
       "title": "Do early support messages change student behaviour?",
       "question": "In a standalone learning activity, do actionable support prompts improve voluntary follow-through compared with neutral reminders?",
@@ -126,7 +126,7 @@ window.RESEARCH_CONTENT = {
     },
     {
       id:"B1",
-      "route": "Participant study · ethics required",
+      "route": "Participant study",
       "area": "gamification",
       "title": "Do leaderboards help or hurt motivation?",
       "question": "During a short learning activity, how does leaderboard feedback affect motivation and performance compared with personal-progress feedback?",
@@ -152,7 +152,7 @@ window.RESEARCH_CONTENT = {
     },
     {
       id:"B2",
-      "route": "Participant study · ethics required",
+      "route": "Participant study",
       "area": "gamification",
       "title": "Badges, activity and actual learning",
       "question": "Do achievement badges change short-term task completion and demonstrated understanding in a controlled learning activity?",
@@ -178,7 +178,7 @@ window.RESEARCH_CONTENT = {
     },
     {
       id:"B3",
-      "route": "Participant study · ethics required",
+      "route": "Participant study",
       "area": "gamification",
       "title": "Competition versus cooperation in learning",
       "question": "In a small controlled learning activity, how do cooperative goals compare with individual competition in engagement and task performance?",
@@ -203,7 +203,7 @@ window.RESEARCH_CONTENT = {
     },
     {
       id:"B4",
-      "route": "Participant study · ethics required",
+      "route": "Participant study",
       "area": "gamification",
       "title": "When does gamification stop being motivating?",
       "question": "Does enthusiasm for repeated reward-heavy learning tasks change over a small number of exposures?",
@@ -229,7 +229,7 @@ window.RESEARCH_CONTENT = {
     },
     {
       id:"C1",
-      "route": "Participant study · ethics required",
+      "route": "Participant study",
       "area": "computing-education",
       "title": "Can students debug AI-generated code?",
       "question": "How accurately can novice programmers locate, explain and repair errors in a standardised set of AI-generated programs?",
@@ -250,7 +250,7 @@ window.RESEARCH_CONTENT = {
     },
     {
       id:"C2",
-      "route": "Participant study · ethics required",
+      "route": "Participant study",
       "area": "computing-education",
       "title": "Does AI coding support create transferable skill?",
       "question": "After practising with AI assistance, can novice programmers solve a related problem independently in the same session?",
@@ -275,7 +275,7 @@ window.RESEARCH_CONTENT = {
     },
     {
       id:"C3",
-      "route": "Participant study · ethics required",
+      "route": "Participant study",
       "area": "computing-education",
       "title": "Which programming feedback works best?",
       "question": "For a small set of programming errors, which feedback helps novices make correct fixes: rule-based hints or AI-generated hints?",
@@ -330,8 +330,8 @@ window.RESEARCH_CONTENT = {
       ]
     },
     {
-      id:"E1",
-      "route": "Participant study · ethics required",
+      id:"D1",
+      "route": "Participant study",
       "area": "research-ai",
       "title": "Can students spot fabricated academic references?",
       "question": "How effectively do novice researchers verify authentic and fabricated references when given access to ordinary scholarly search tools?",
@@ -356,7 +356,7 @@ window.RESEARCH_CONTENT = {
       ]
     },
     {
-      id:"E2",
+      id:"D2",
       "route": "Computational study",
       "area": "research-ai",
       "title": "Can AI identify weaknesses in a postgraduate research proposal?",
@@ -378,7 +378,7 @@ window.RESEARCH_CONTENT = {
       "resources": []
     },
     {
-      id:"E3",
+      id:"D3",
       "route": "Computational study",
       "area": "research-ai",
       "title": "Does AI give reliable advice on research-methods decisions?",
@@ -404,7 +404,7 @@ window.RESEARCH_CONTENT = {
       "resources": []
     },
     {
-      id:"E4",
+      id:"D4",
       "route": "Computational study",
       "area": "research-ai",
       "title": "How reliable are AI-generated research-methods learning activities?",

@@ -9,6 +9,8 @@
   const grid = $("topic-grid");
   const dialog = $("topic-dialog");
   const topicById = Object.fromEntries(content.topics.map(topic => [topic.id, topic]));
+  // Keep previously shared E1–E4 links working after the fourth stream becomes D1–D4.
+  const canonicalTopicId = id => /^E[1-4]$/.test(id) ? `D${id.slice(1)}` : id;
 
   function tags(topic) { return topic.approaches.map(method => `<span class="topic-tag ${escapeHTML(method)}">${methodLabels[method]}</span>`).join(""); }
 
@@ -40,6 +42,8 @@
   }
 
   function openTopic(id, updateUrl = true) {
+    const requestedId = id;
+    id = canonicalTopicId(id);
     const topic = topicById[id];
     if (!topic) return;
     $("dialog-code").textContent = `${topic.id} / RESEARCH BRIEF`;
@@ -60,7 +64,7 @@
       <div class="dialog-warning">These are starting ideas. You will need to identify a research gap, justify your approach and develop a feasible concept note. Participant studies require the relevant ethics approval before data collection.</div>
       <div class="dialog-bottom"><button class="copy-topic" type="button" id="share-topic">Copy link to this topic ↗</button><span id="topic-copy-status" class="copy-status" aria-live="polite"></span></div>`;
     if (!dialog.open) dialog.showModal();
-    if (updateUrl) updateTopicUrl(id);
+    if (updateUrl || requestedId !== id) updateTopicUrl(id);
     $("share-topic").addEventListener("click", async () => {
       const url = new URL(window.location.href); url.searchParams.set("topic",id);
       const ok = await copyText(url.toString());
@@ -121,7 +125,7 @@
   dialog.addEventListener("close", () => updateTopicUrl(null));
   window.addEventListener("popstate", () => {
     const id=new URL(window.location.href).searchParams.get("topic");
-    if(id && topicById[id])openTopic(id,false);
+    if(id && topicById[canonicalTopicId(id)])openTopic(id,false);
     else if(dialog.open)dialog.close();
   });
 
@@ -175,7 +179,7 @@ Kind regards,
   $("year").textContent=new Date().getFullYear().toString();
   renderTopics();
   const initialId=new URL(window.location.href).searchParams.get("topic");
-  if(initialId && topicById[initialId])openTopic(initialId,false);
+  if(initialId && topicById[canonicalTopicId(initialId)])openTopic(initialId,false);
 })();
 
 // Light/dark control; default dark, remember preference when storage is available.
